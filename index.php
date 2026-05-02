@@ -1,4 +1,4 @@
-<body style="background-color:yellow">
+<body style="background-color:blue">
     <h1><?php
         echo "hello"; 
     ?></h1>
