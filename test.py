@@ -1,11 +1,7 @@
-cd ~/cicd
-
-cat > test.py << 'EOF'
 import os
 import sys
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-# TANGGAL NATIN ANG "Service" IMPORT
 
 test_file = os.getenv("TARGET_PHP_FILE", "index.php")
 
@@ -14,7 +10,7 @@ options.add_argument("--headless=new")
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 
-# DITO ANG HACK: Walang Service path! Selenium na ang maghahanap.
+# Selenium Manager na ang bahala maghanap ng chromedriver
 driver = webdriver.Chrome(options=options)
 
 try:
@@ -48,4 +44,3 @@ except Exception as e:
     sys.exit(1)
 finally:
     driver.quit()
-EOF
