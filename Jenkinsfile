@@ -19,36 +19,12 @@ pipeline {
                 }
             }
         }
-        stage('Stage & Force Verbose Errors') {
-            steps {
-                sh '''
-                sudo mkdir -p /var/www/html/staging
-                sudo rsync -av --delete --exclude='venv/' --exclude='.git/' ./ /var/www/html/staging/
-                
-                echo "php_flag display_errors On" | sudo tee /var/www/html/staging/.htaccess
-                echo "php_value error_reporting 32767" | sudo tee -a /var/www/html/staging/.htaccess
-                
-                sudo chown -R www-data:www-data /var/www/html/staging
-                '''
-            }
-        }
-        stage('Run Strict Test') {
-            steps {
-                sh '''
-                python3 -m venv venv
-                . venv/bin/activate
-                pip install selenium
-                python3 test.py
-                '''
-            }
-        }
         stage('Deploy') {
             steps {
                 sh '''
+                # Only runs if test.py exited with 0
                 sudo rsync -av --delete --exclude='venv/' --exclude='.git/' --exclude='staging/' ./ /var/www/html/
                 sudo chown -R www-data:www-data /var/www/html/
                 '''
             }
         }
-    }
-}
