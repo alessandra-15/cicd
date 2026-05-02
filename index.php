@@ -1,3 +1,6 @@
-<?php
-echo "<h1>Hello CI/CD World</h1>";
-?>
+<body style="background-color:pink">
+    <h1><?php
+        echo "hello world"; 
+    ?></h1>
+</body>
+
