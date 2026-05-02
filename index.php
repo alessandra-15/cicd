@@ -1,4 +1,5 @@
-<?php
-echo '<body style="background-color:yellow"><h1>hello</h1></body>';
-?>
-
+<body style="background-color:pink">
+    <h1><?php
+        echo "hello world"; 
+    ?></h1>
+</body>
